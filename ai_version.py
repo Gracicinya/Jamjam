@@ -31,10 +31,14 @@ COLORS = [
 FONT = pygame.font.SysFont(None, 32)
 
 EMOJI_LIST = ['Emoji1.png', 'Emoji2.png', 'Emoji3.png', 'Emoji4.png', 'Emoji5.png']
-EMOJI_FILES = [pygame.image.load(emoji).convert_alpha() for emoji in EMOJI_LIST]
+EMOJI_FILES = []
+for emoji in EMOJI_LIST:
+    img = pygame.image.load(emoji).convert_alpha()
+    img = pygame.transform.scale(img, (TILE_SIZE - 10, TILE_SIZE - 10))
+    EMOJI_FILES.append(img)
 
 def create_board():
-    return [[random.randrange(len(COLORS)) for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
+    return [[random.randrange(len(EMOJI_FILES)) for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
 
 
 def draw_board(board, selected=None, score=0):
@@ -48,7 +52,9 @@ def draw_board(board, selected=None, score=0):
                 TILE_SIZE,
                 TILE_SIZE
             )
-            pygame.draw.rect(SCREEN, COLORS[board[y][x]], rect)
+            pygame.draw.rect(SCREEN, (50, 50, 50), rect)
+            img_rect = EMOJI_FILES[board[y][x]].get_rect(center=rect.center)
+            SCREEN.blit(EMOJI_FILES[board[y][x]], img_rect)
 
             if selected == (y, x):
                 pygame.draw.rect(SCREEN, HIGHLIGHT, rect, 3)
@@ -84,7 +90,7 @@ def remove_matches(board, matches):
     for x in range(GRID_SIZE):
         column = [board[y][x] for y in range(GRID_SIZE) if board[y][x] is not None]
         missing = GRID_SIZE - len(column)
-        new_column = [random.randrange(len(COLORS)) for _ in range(missing)] + column
+        new_column = [random.randrange(len(EMOJI_FILES)) for _ in range(missing)] + column
         for y in range(GRID_SIZE):
             board[y][x] = new_column[y]
 
