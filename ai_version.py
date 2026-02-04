@@ -30,6 +30,8 @@ COLORS = [
 
 FONT = pygame.font.SysFont(None, 32)
 
+EMOJI_LIST = ['Emoji1.png', 'Emoji2.png', 'Emoji3.png', 'Emoji4.png', 'Emoji5.png']
+EMOJI_FILES = [pygame.image.load(emoji).convert_alpha() for emoji in EMOJI_LIST]
 
 def create_board():
     return [[random.randrange(len(COLORS)) for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
