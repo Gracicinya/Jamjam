@@ -297,10 +297,6 @@ def compute_fall_animation(board, matches):
     return anim, len(matches), board_after
 
 
-
-
-
-
 # -------- Drawing / animation helpers --------
 def draw(board, selected, score, message, anim):
     screen.fill((30, 30, 30))
