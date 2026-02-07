@@ -17,7 +17,7 @@ FPS = 60
 
 ANIM_DURATION = 600  # ms for tile swap animation
 FALL_DURATION = 900  # ms for tiles falling into place
-SHAKE_DURATION = 220
+SHAKE_DURATION = 520
 SHAKE_STRENGTH = 6  # pixels
 SHRINK_DURATION = 150  # ms for tile shrink when clearing
 
